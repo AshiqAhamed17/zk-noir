@@ -1,0 +1,10 @@
+# Ignore build artifacts
+Prover.toml
+**/Prover.toml
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
