@@ -12,7 +12,7 @@ fn main(
     assert(address == expected_address, "Address does not match expected address");
 }
 
-// #[test]
+// [test]
 // fn test_main() {
 //     main(1, 2);
 
