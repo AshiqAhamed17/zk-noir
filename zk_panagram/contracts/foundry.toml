@@ -2,6 +2,7 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+ffi = true
 
 remapping = [
     '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/',
