@@ -4,7 +4,8 @@ fn main(age: i16, min_age: pub i16) {
 
 #[test]
 fn test_main() {
-    main(19, 18);
+
+    main(23, 21);
 
     // Uncomment to make test fail
     // main(1, 1);
