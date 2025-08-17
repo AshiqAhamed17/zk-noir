@@ -1,0 +1,10 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@aztec/bb.js": "^1.2.1",
+    "@noir-lang/noir_js": "^1.0.0-beta.10"
+  }
+}
