@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZK Age Verifier</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ZK Age Verifier</h1>
+      <form id="ageForm">
+        <label for="year_of_birth">Year of Birth:</label>
+        <input type="number" id="year_of_birth" name="year_of_birth" required />
+
+        <label for="current_year">Current Year:</label>
+        <input type="number" id="current_year" name="current_year" required />
+
+        <button type="submit">Generate Proof</button>
+      </form>
+    </div>
+
+  <script type="module" src="main.js"></script>
+  </body>
+</html>
