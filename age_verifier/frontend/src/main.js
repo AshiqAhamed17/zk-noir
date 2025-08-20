@@ -1,24 +1,36 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+import { UltraHonkBackend } from "@aztec/bb.js";
+import { Noir } from "@noir-lang/noir_js";
+import circuit from "../../target/age_verifier.json" with { type: "json" };
 
-setupCounter(document.querySelector('#counter'))
+import { Buffer } from "buffer";
+window.Buffer = Buffer;
+
+const noir = new Noir(circuit);
+const backend = new UltraHonkBackend(circuit.bytecode);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("ageForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const yob = parseInt(document.getElementById("year_of_birth").value, 10);
+    const cy = parseInt(document.getElementById("current_year").value, 10);
+
+    console.log("Form submitted:", { yob, cy });
+
+    try {
+      const { witness } = await noir.execute({
+        year_of_birth: yob,
+        current_year: cy,
+      });
+
+      const proof = await backend.generateProof(witness);
+
+      console.log("Generated Proof:", proof);
+    } catch (err) {
+      console.error("Error generating proof:", err);
+    }
+  });
+});
